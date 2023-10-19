@@ -489,6 +489,36 @@ select *
 from PERSONS, PLAYERS
 where PERSONS.person_id = players.player_id;
 
+/*Inserting more player into the Players table*/
+
+INSERT INTO PERSONS(First_name, Last_name, Date_of_birth, Height_In_cm, Birth_City)
+VALUES('Jose', 'Gaya', DATE'2006-8-10', 170 , (SELECT City_ID FROM CITIES WHERE 
+City_name = 'East Brampton'));
+
+INSERT INTO PLAYERS(Shirt_number, Position, Num_matches, Matches_won, Matches_draw, Matches_lost, Goals, Min_played, Yellow_cards, Red_cards, Wage, Player_ID, Managed_by, Member_of)
+VALUES(23, 'Left Back', 24, 17, 0, 7, 10, 140, 2, 1, 150.00, (SELECT Person_ID FROM PERSONS WHERE First_name = 'Jose' AND Last_name = 'Gaya'), (SELECT Person_ID FROM PERSONS WHERE First_name = 'Xavier' AND Last_name = 'Creus' ), (SELECT Club_name FROM CLUBS WHERE Club_name = 'FC Barcelona'));
+
+
+INSERT INTO PERSONS(First_name, Last_name, Date_of_birth, Height_In_cm, Birth_City)
+VALUES('James', 'McDonald', DATE'1998-08-23', 185 , (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
+
+INSERT INTO PLAYERS(Shirt_number, Position, Num_matches, Matches_won, Matches_draw, Matches_lost, Goals, Min_played, Yellow_cards, Red_cards, Wage, Player_ID, Managed_by, Member_of)
+VALUES(3, 'Left Back', 24, 18, 4, 2, 2, 125, 3, 4, 100.00, (SELECT Person_ID FROM PERSONS WHERE First_name = 'James' AND Last_name = 'McDonald'), (SELECT Person_ID FROM PERSONS WHERE First_name = 'Xavier' AND Last_name = 'Creus' ), (SELECT Club_name FROM CLUBS WHERE Club_name = 'FC Barcelona'));
+
+
+INSERT INTO PERSONS(First_name, Last_name, Date_of_birth, Height_In_cm, Birth_City)
+VALUES('Lamine', 'Yamal', DATE'2007-07-23', 180 , (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
+
+INSERT INTO PLAYERS(Shirt_number, Position, Num_matches, Matches_won, Matches_draw, Matches_lost, Goals, Min_played, Yellow_cards, Red_cards, Wage, Player_ID, Managed_by, Member_of)
+VALUES(27, 'Right Wing', 24, 18, 4, 2, 2, 190, 0, 0, 160.00, (SELECT Person_ID FROM PERSONS WHERE First_name = 'Lamine' AND Last_name = 'Yamal'), (SELECT Person_ID FROM PERSONS WHERE First_name = 'Xavier' AND Last_name = 'Creus' ), (SELECT Club_name FROM CLUBS WHERE Club_name = 'FC Barcelona'));
+
+
+/*Query to VIEW which club players are a member of*/
+
+CREATE VIEW View_FCBarcelona_Players AS
+SELECT * FROM Players
+WHERE Member_of = "FC Barcelona";
+
 
 SELECT * FROM MEMBERSHIP_LOG;
 SELECT * FROM GAMES;
