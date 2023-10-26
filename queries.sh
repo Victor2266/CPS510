@@ -47,5 +47,12 @@ WHERE NOT EXISTS (
     WHERE REFEREEING_LOG.Game = GAMES.Unique_ID
 );
 
+#/*selects clubs with average goal more than 5*/
+SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+FROM PLAYERS p
+GROUP BY p.Member_Of
+HAVING AVG(p.Goals) > 5;
+
+
 exit;
 EOF
