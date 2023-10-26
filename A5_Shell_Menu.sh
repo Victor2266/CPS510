@@ -1,5 +1,6 @@
 #!/bin/sh
-MainMenu() {
+
+DisplayStartingText(){
     clear
     echo
     "================================================================="
@@ -22,6 +23,10 @@ MainMenu() {
     echo " "
     echo " $IS_SELECTEDE E) End/Exit"
     echo "Choose: "
+}
+
+MainMenu() {
+    DisplayStartingText
     while [ "$CHOICE" != "START" ]; 
     do
 
@@ -40,9 +45,12 @@ MainMenu() {
         elif [ "$CHOICE" == "4" ]; then
             bash queries.sh
             Pause
-
         elif [ "$CHOICE" == "E" ]; then
             exit
+        elif [ "$CHOICE" == "M" ]; then
+            echo "THE INSTRUCTIONS ABOVE ARE THE MANUAL, TYPE IN THE NUMBER/LETTER IN UPPERCASE TO PERFORM THE ACTION"
+        elif [ "$CHOICE" == "" ]; then
+            DisplayStartingText
         fi
     done
 }
