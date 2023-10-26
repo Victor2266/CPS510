@@ -20,7 +20,12 @@ WHERE Num_matches >= 15
     AND PLAYERS.PLAYER_ID = PERSONS.PERSON_ID
 ORDER BY Matches_won DESC;
 
-/*Query that shows the clubs that have scored the greatest average of goals*/
+/*Query that shows the number of players who have won over 4 matches [HAS COUNT]*/
+SELECT COUNT(*) AS PlayersWithMoreThan4Wins
+FROM PLAYERS p
+WHERE Matches_won > 4;
+
+/*Query that shows the clubs that have scored the greatest average of goals [HAS AVG, GROUP BY]*/
 WITH ClubAvgGoals AS (
     SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
     FROM PLAYERS p
@@ -30,9 +35,10 @@ SELECT Club AS HighestAvgScoringClubs
 FROM ClubAvgGoals
 WHERE AvgGoals = (
     SELECT MAX(AvgGoals) 
-    FROM ClubAvgGoals);
+    FROM ClubAvgGoals
+);
 
-/*Query to show which games do not have a referee*/
+/*Query to show which games do not have a referee [HAS NOT EXIST]*/
 SELECT *
 FROM GAMES
 WHERE NOT EXISTS (
