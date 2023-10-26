@@ -13,7 +13,7 @@ WHERE Member_of = 'FC Barcelona'
 ORDER BY FIRST_NAME ASC;
 
 /*Select players who have at least 15 matches played and at least 10 wins */
-SELECT FIRST_NAME, LAST_NAME
+SELECT 'Players with atleast 15 matches and 10 wins', FIRST_NAME, LAST_NAME
 FROM  PLAYERS, PERSONS
 WHERE Num_matches >= 15
     AND Matches_won >=10
