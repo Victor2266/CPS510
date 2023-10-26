@@ -69,7 +69,7 @@ VALUES('Rogers Centre', 49286, 1, 'Blue Jays Way', (SELECT City_ID FROM CITIES W
 INSERT INTO STADIUMS
 VALUES('Allianz Arena', 75024, 25, 'Werner-Heisenberg-Allee', (SELECT City_ID FROM CITIES WHERE City_name = 'Munich'));
 INSERT INTO STADIUMS
-VALUES('Spotify Camp Nou', 99354, 12, 'C/ dArístides Maillol', (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
+VALUES('Spotify Camp Nou', 99354, 12, 'C/ dArÃ­stides Maillol', (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
 INSERT INTO STADIUMS
 VALUES('Anfield Stadium', 54074, 1, 'Anfield Rd', (SELECT City_ID FROM CITIES WHERE City_name = 'Liverpool'));
 INSERT INTO STADIUMS
@@ -452,7 +452,7 @@ SELECT PERSONS.first_name, PERSONS.last_name, MEMBERSHIP_LOG.club, MEMBERSHIP_LO
 FROM MEMBERSHIP_LOG, PERSONS
 WHERE MEMBERSHIP_LOG.PLAYER = PERSONS.PERSON_ID ORDER BY PERSONS.first_name ASC;
 
-/* Selects the player_ID(s) where the player’s first name which is stored in the PERSONS table matches ‘Jose’*/ 
+/* Selects the player_ID(s) where the playerÂ’s first name which is stored in the PERSONS table matches Â‘JoseÂ’*/ 
 SELECT PLAYERS.Player_ID AS "PLAYER_ID FROM FIRST NAME"
 FROM PLAYERS, PERSONS
 WHERE PLAYERS.Player_ID = PERSONS.Person_ID
@@ -579,6 +579,31 @@ WHERE Num_matches >= 15
     AND Matches_won >=10
 ORDER BY Matches_won DESC;
 
+/*Query that shows the number of players who have won over 4 matches*/
+SELECT COUNT(*) AS PlayersWithMoreThan4Wins
+FROM PLAYERS
+WHERE Matches_won > 4;
+
+/*Query that shows the clubs that have players who have scored the greatest average of goals*/
+WITH PlayerAvgGoals AS (
+    SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+    FROM PLAYERS p
+    GROUP BY p.Member_Of
+)
+SELECT Club
+FROM PlayerAvgGoals
+WHERE AvgGoals = (
+    SELECT MAX(AvgGoals) 
+    FROM PlayerAvgGoals);
+
+/*Query to show which games do not have a referee*/
+SELECT *
+FROM GAMES
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM REFEREEING_LOG
+    WHERE REFEREEING_LOG.Game = GAMES.Unique_ID
+);
 
 SELECT * FROM SEASONS;
 SELECT * FROM MEMBERSHIP_LOG;
