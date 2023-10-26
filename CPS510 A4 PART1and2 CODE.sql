@@ -489,8 +489,6 @@ select *
 from PERSONS, PLAYERS
 where PERSONS.person_id = players.player_id;
 
-DROP VIEW List_of_player_info;
-
 /*tHIS VIEW SHOWS ALL THE PLAYER INFO INCLUDING PERSONAL INFO AND EXCLUDES DUPLICATE COLUMNS LIKE ID*/
 DROP VIEW List_of_player_info;
 
@@ -540,10 +538,11 @@ VALUES(27, 'Right Wing', 24, 18, 4, 2, 2, 190, 0, 0, 160.00, (SELECT Person_ID F
 
 
 /*Query to VIEW which club players are a member of*/
+DROP VIEW View_FCBarcelona_Players;
 
 CREATE VIEW View_FCBarcelona_Players AS
 SELECT * FROM Players
-WHERE Member_of = "FC Barcelona";
+WHERE Member_of = 'FC Barcelona';
 
 /*View for ALL CLUBS THAT HAVE MEMBERS ACCORDING TO THE MEMBERSHIP LOG*/
 DROP VIEW CLUBS_THAT_HAVE_MEMBERS;
@@ -567,21 +566,23 @@ SELECT * FROM CLUBS_THAT_HAVE_MEMBERS_SUMMER_2024;
 /*Select players from FC Barcelona who have a yellow card or Red card*/
 
 SELECT FIRST_NAME, LAST_NAME
-FROM  PLAYERS
-WHERE Member_of = "FC Barcelona"
+FROM PLAYERS, PERSONS
+WHERE Member_of = 'FC Barcelona'
       AND (Yellow_cards > 0 or Red_cards > 0)
+      AND PLAYERS.PLAYER_ID = PERSONS.PERSON_ID
 ORDER BY FIRST_NAME ASC;
 
 /*Select players who have at least 15 matches played and at least 10 wins */
 SELECT FIRST_NAME, LAST_NAME
-FROM  PLAYERS
+FROM  PLAYERS, PERSONS
 WHERE Num_matches >= 15
     AND Matches_won >=10
+    AND PLAYERS.PLAYER_ID = PERSONS.PERSON_ID
 ORDER BY Matches_won DESC;
 
 /*Query that shows the number of players who have won over 4 matches*/
 SELECT COUNT(*) AS PlayersWithMoreThan4Wins
-FROM PLAYERS
+FROM PLAYERS p
 WHERE Matches_won > 4;
 
 /*Query that shows the clubs that have players who have scored the greatest average of goals*/
