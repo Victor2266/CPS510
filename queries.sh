@@ -56,13 +56,19 @@ WHERE NOT EXISTS (
     WHERE REFEREEING_LOG.Game = GAMES.Unique_ID
 );
 
+
 /*
-selects clubs with average goal more than 5
+selects clubs with average goal more than 5 or equal to 1
 */
-SELECT 'selects clubs with average goal more than 5', p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
 FROM PLAYERS p
 GROUP BY p.Member_Of
-HAVING AVG(p.Goals) > 5;
+HAVING AVG(p.Goals) > 5
+UNION
+SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+FROM PLAYERS p
+GROUP BY p.Member_Of
+HAVING AVG(p.Goals) = 1;
 
 /*
 All the clubs that do not have the rogers centre as a home stadium
