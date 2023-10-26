@@ -64,6 +64,10 @@ FROM PLAYERS p
 GROUP BY p.Member_Of
 HAVING AVG(p.Goals) > 5;
 
+/*
+All the clubs that do not have the rogers centre as a home stadium
+*/
+SELECT CLUBS.CLUB_NAME FROM CLUBS MINUS SELECT CLUBS.CLUB_NAME FROM CLUBS WHERE CLUBS.HOME_STADIUM = 'Rogers Centre';
 
 exit;
 EOF
