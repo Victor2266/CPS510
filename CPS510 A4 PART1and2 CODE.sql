@@ -564,6 +564,21 @@ AND MEMBERSHIP_LOG.SEASON = 'Summer 2024';
 
 SELECT * FROM CLUBS_THAT_HAVE_MEMBERS_SUMMER_2024;
 
+/*Select players from FC Barcelona who have a yellow card or Red card*/
+
+SELECT FIRST_NAME, LAST_NAME
+FROM  PLAYERS
+WHERE Member_of = "FC Barcelona"
+      AND (Yellow_cards > 0 or Red_cards > 0)
+ORDER BY FIRST_NAME ASC;
+
+/*Select players who have at least 15 matches played and at least 10 wins */
+SELECT FIRST_NAME, LAST_NAME
+FROM  PLAYERS
+WHERE Num_matches >= 15
+    AND Matches_won >=10
+ORDER BY Matches_won DESC;
+
 
 SELECT * FROM SEASONS;
 SELECT * FROM MEMBERSHIP_LOG;
