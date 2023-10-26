@@ -607,12 +607,12 @@ WHERE NOT EXISTS (
 );
 
 /*selects clubs with average goal more than 5 or equal to 1*/
-SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+SELECT p.Member_Of AS Club_GR_5_or_EQ_1, AVG(p.Goals) AS AvgGoals
 FROM PLAYERS p
 GROUP BY p.Member_Of
 HAVING AVG(p.Goals) > 5
 UNION
-SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
+SELECT p.Member_Of AS Club_GR_5_or_EQ_1, AVG(p.Goals) AS AvgGoals
 FROM PLAYERS p
 GROUP BY p.Member_Of
 HAVING AVG(p.Goals) = 1;
