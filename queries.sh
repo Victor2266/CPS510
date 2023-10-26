@@ -5,7 +5,7 @@ set sqlblanklines on
 
 /*Select players from FC Barcelona who have a yellow card or Red card*/
 
-SELECT FIRST_NAME, LAST_NAME
+SELECT 'FC_Barcelona PLayers with yellow or red card', FIRST_NAME, LAST_NAME
 FROM PLAYERS, PERSONS
 WHERE Member_of = 'FC Barcelona'
       AND (Yellow_cards > 0 or Red_cards > 0)
