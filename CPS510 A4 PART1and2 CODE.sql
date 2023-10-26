@@ -585,17 +585,17 @@ SELECT COUNT(*) AS PlayersWithMoreThan4Wins
 FROM PLAYERS p
 WHERE Matches_won > 4;
 
-/*Query that shows the clubs that have players who have scored the greatest average of goals*/
-WITH PlayerAvgGoals AS (
+/*Query that shows the clubs that have scored the greatest average of goals*/
+WITH ClubAvgGoals AS (
     SELECT p.Member_Of AS Club, AVG(p.Goals) AS AvgGoals
     FROM PLAYERS p
     GROUP BY p.Member_Of
 )
-SELECT Club
-FROM PlayerAvgGoals
+SELECT Club AS HighestAvgScoringClubs
+FROM ClubAvgGoals
 WHERE AvgGoals = (
     SELECT MAX(AvgGoals) 
-    FROM PlayerAvgGoals);
+    FROM ClubAvgGoals);
 
 /*Query to show which games do not have a referee*/
 SELECT *
