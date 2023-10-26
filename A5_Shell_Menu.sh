@@ -1,7 +1,8 @@
 #!/bin/sh
 MainMenu() {
 
-    while [ "$CHOICE" != "START" ]; do
+    while [ "$CHOICE" != "START" ]; 
+    do
         clear
         echo
         "================================================================="
