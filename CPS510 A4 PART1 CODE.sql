@@ -12,7 +12,7 @@ DROP TABLE REFEREES;
 DROP TABLE PERSONS;
 DROP TABLE CITIES;
 DROP TABLE SEASONS;
-
+-- comment
 /*This is the start of table creations*/
 CREATE TABLE SEASONS(
     Season_Name varchar(255) NOT NULL PRIMARY KEY,
@@ -69,7 +69,7 @@ VALUES('Rogers Centre', 49286, 1, 'Blue Jays Way', (SELECT City_ID FROM CITIES W
 INSERT INTO STADIUMS
 VALUES('Allianz Arena', 75024, 25, 'Werner-Heisenberg-Allee', (SELECT City_ID FROM CITIES WHERE City_name = 'Munich'));
 INSERT INTO STADIUMS
-VALUES('Spotify Camp Nou', 99354, 12, 'C/ dArístides Maillol', (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
+VALUES('Spotify Camp Nou', 99354, 12, 'C/ dArï¿½stides Maillol', (SELECT City_ID FROM CITIES WHERE City_name = 'Barcelona'));
 INSERT INTO STADIUMS
 VALUES('Anfield Stadium', 54074, 1, 'Anfield Rd', (SELECT City_ID FROM CITIES WHERE City_name = 'Liverpool'));
 INSERT INTO STADIUMS
@@ -452,7 +452,7 @@ SELECT PERSONS.first_name, PERSONS.last_name, MEMBERSHIP_LOG.club, MEMBERSHIP_LO
 FROM MEMBERSHIP_LOG, PERSONS
 WHERE MEMBERSHIP_LOG.PLAYER = PERSONS.PERSON_ID ORDER BY PERSONS.first_name ASC;
 
-/* Selects the player_ID(s) where the player’s first name which is stored in the PERSONS table matches ‘Jose’*/ 
+/* Selects the player_ID(s) where the playerï¿½s first name which is stored in the PERSONS table matches ï¿½Joseï¿½*/ 
 SELECT PLAYERS.Player_ID AS "PLAYER_ID FROM FIRST NAME"
 FROM PLAYERS, PERSONS
 WHERE PLAYERS.Player_ID = PERSONS.Person_ID
