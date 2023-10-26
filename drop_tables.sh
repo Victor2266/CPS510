@@ -1,7 +1,7 @@
 #!/bin/sh
 #export LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib
 sqlplus64
-"v7do/password@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=oracle.scs.ryerson.c)
+"username/password@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=oracle.scs.ryerson.c)
 (Port=1521))(CONNECT_DATA=(SID=orcl)))" <<EOF
 DROP TABLE MEMBERSHIP_LOG;
 DROP TABLE REFEREEING_LOG;
