@@ -565,7 +565,8 @@ SELECT * FROM CLUBS_THAT_HAVE_MEMBERS_SUMMER_2024;
 
 /*Select players from FC Barcelona who have a yellow card or Red card*/
 
-SELECT FIRST_NAME, LAST_NAME
+CREATE VIEW FC_Barcelona_PLayers_with_yellow_red_card AS
+SELECT 'FC_Barcelona PLayers with yellow or red card', FIRST_NAME, LAST_NAME
 FROM PLAYERS, PERSONS
 WHERE Member_of = 'FC Barcelona'
       AND (Yellow_cards > 0 or Red_cards > 0)
