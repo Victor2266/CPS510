@@ -26,7 +26,7 @@ MainMenu() {
         echo "Choose: "
         read CHOICE
         if [ "$CHOICE" == "0" ]; then
-            echo "Nothing Here"
+            echo "Choice was '0'."
         elif [ "$CHOICE" == "1" ]; then
             bash drop_tables.sh
             Pause
