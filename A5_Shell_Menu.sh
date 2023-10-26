@@ -45,6 +45,9 @@ MainMenu() {
         elif [ "$CHOICE" == "4" ]; then
             bash queries.sh
             Pause
+        elif [ "$CHOICE" == "X" ]; then
+            echo "You do not have permission, try to kill Oracle DB from outside this menu."
+            exit
         elif [ "$CHOICE" == "E" ]; then
             exit
         elif [ "$CHOICE" == "M" ]; then
